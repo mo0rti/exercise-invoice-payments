@@ -62,16 +62,16 @@ Settings for this application are inside a file named **`app.json`**. You can fi
 
 ### Screen shots
 ##### Invoices list - desktop view
-<img src="https://github.com/MortiTotti/exercise-invoice-payments/blob/master/screenshots/invoice-list-desktop.png" width="700" aspectRatio="1/2">
+<img src="https://github.com/MortiTotti/exercise-invoice-payments/blob/master/screenshots/invoice-list-desktop.png" width="750" aspectRatio="1/2">
 
 ##### Invoices list - mobile view
 <img src="https://github.com/MortiTotti/exercise-invoice-payments/blob/master/screenshots/invoice-list-mobile.png" width="400" aspectRatio="1/2">
 
 ##### Invoice dialog - invoice information view - desktop view
-<img src="https://github.com/MortiTotti/exercise-invoice-payments/blob/master/screenshots/invoice-dialog-normal-state.png" width="700" aspectRatio="1/2">
+<img src="https://github.com/MortiTotti/exercise-invoice-payments/blob/master/screenshots/invoice-dialog-normal-state.png" width="750" aspectRatio="1/2">
 
 ##### Invoice dialog - invoice information view - mobile view
 <img src="https://github.com/MortiTotti/exercise-invoice-payments/blob/master/screenshots/invoice-dialog-normal-state-mobile.png" width="400" aspectRatio="1/2">
 
 ##### Invoice dialog - payment view
-<img src="https://github.com/MortiTotti/exercise-invoice-payments/blob/master/screenshots/invoice-dialog-payment-state.png" width="700" aspectRatio="1/2">
+<img src="https://github.com/MortiTotti/exercise-invoice-payments/blob/master/screenshots/invoice-dialog-payment-state.png" width="750" aspectRatio="1/2">
