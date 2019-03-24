@@ -38,18 +38,22 @@
 }
 .input-label{    
     width: 20%;
-    font-size: 17px !important;
+    font-weight: 500 !important;
+    font-size: 14px !important;
     padding-right:30px;
 }
 .date-input{
     width: 100% !important;
 }
 .radio-label{
+    font-weight: 500 !important;
+    font-size: 14px !important;
     width:25%;
 }
 .search-label{
     width: 30%;    
-    font-size: 17px !important;    
+    font-weight: 500 !important;
+    font-size: 14px !important;
 }
 .button-container{
     position: absolute;

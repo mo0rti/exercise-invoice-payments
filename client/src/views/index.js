@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import InvoicesList from "./dashboard";
+import InvoicesList from "./invoices-list";
 import '../assets/styles/App.css';
 
 class App extends Component {

@@ -73,7 +73,7 @@
         display: table-cell;
     }
     .no-more{
-        display: none;
+        display: none !important;
     }
     .add-width{
         width: auto;        

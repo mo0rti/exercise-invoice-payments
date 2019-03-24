@@ -1,5 +1,5 @@
-class HttpClient {
-    getAsync = async (url) => {
+const HttpClient = {
+    getAsync: async (url) => {
         let options = {
             method: 'GET',
             headers: {
@@ -8,8 +8,8 @@ class HttpClient {
             },
         };
         return await http(url, options)
-    }
-    postAsync = async (url, reqBody) => {
+    },
+    postAsync: async (url, reqBody) => {
         const options = {
             method: 'POST',
             headers: {
@@ -19,8 +19,8 @@ class HttpClient {
             body: JSON.stringify(reqBody),
         };
         return await http(url, options)
-    }
-    deleteAsync = async (url) => {
+    },
+    deleteAsync: async (url) => {
         let options = {
             method: 'DELETE',
             headers: {
@@ -32,10 +32,12 @@ class HttpClient {
     }
 }
 
-const http = async (url, options) =>
-    fetch(url, options)
+const http = async (url, options) => {
+    // TODO: possible extra work before calling api
+    return fetch(url, options)
         .then(response => response.json())
         .then(data => Promise.resolve(data))
         .catch(error => Promise.reject(error));
+}
 
-export default new HttpClient;
+export default HttpClient;

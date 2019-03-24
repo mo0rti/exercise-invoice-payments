@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from "react-redux";
+import 'semantic-ui-css/semantic.min.css'
 import store from "./store/configure-store-dev";
-import App from './views/App';
+import App from 'Views';
 import * as serviceWorker from './serviceWorker';
-import './assets/styles/index.css';
+import 'Assets/styles/index.css';
 
 ReactDOM.render(
     <Provider store={store}>

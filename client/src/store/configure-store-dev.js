@@ -1,5 +1,5 @@
 import { createStore, applyMiddleware } from "redux";
-import rootReducer from "../reducer"
+import rootReducer from "Reducers"
 import thunk from "redux-thunk";
 import { loadState, saveState } from "./localStorage";
 
