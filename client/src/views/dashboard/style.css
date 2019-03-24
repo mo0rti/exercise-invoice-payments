@@ -1,0 +1,94 @@
+.container{    
+    padding: 10px;    
+}
+/*************** Invoices List Table*/
+.header-invoices{
+    display: table-cell;
+    height: 80px;  
+}
+.header-invoices div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;    
+}
+
+.invoices-table {
+    width: 100%; 
+    margin-top: 10px;
+    border-collapse: collapse;
+    color: #313131;
+    font-size: 14px;
+}
+.invoices-table tbody tr td:nth-child(1),.invoices-table thead th:nth-child(1),
+.invoices-table tbody tr td:nth-child(2),.invoices-table thead th:nth-child(2){
+    padding-left: 14px;
+}
+.invoices-table th,.invoices-table td{ 
+    vertical-align: middle;    
+}
+
+.invoices-table thead tr th{    
+    padding-top:13px;
+    padding-bottom: 6px;        
+}
+.invoices-table tr{
+    height: 41.8px;
+}
+.invoices-table thead tr:first-child{
+    background-color:transparent;    
+}
+.invoices-table tbody tr{
+    background-color:rgba(214, 214, 214, 0.45);
+    border-bottom: 1px solid #FFFFFF;
+}
+.add-width{
+    width: 80px;
+    text-align: center;    
+}
+.edit-button{
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: 500;
+}
+.edit-button:hover{
+    color: lightseagreen;
+}
+.more{
+    display: none;
+}
+.more-column{
+    display: flex;
+    flex-direction: row;
+}
+.more-column span:last-child{
+    font-size:14px;
+    font-weight: 500;
+    margin-left: 5px;
+}
+
+/************ RESPONSIVE **********/
+@media only screen and (max-width:600px){
+    .more{
+        display: table-cell;
+    }
+    .no-more{
+        display: none;
+    }
+    .add-width{
+        width: auto;        
+    }
+}
+@media only screen and (max-width:500px){
+    .more-column{        
+        flex-direction: column;
+    }
+    .more-column span:last-child{        
+        margin-left: 0;
+    }
+    .edit-button{     
+        font-size: 14px;     
+    }
+}
+
+

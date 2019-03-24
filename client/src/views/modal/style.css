@@ -1,0 +1,127 @@
+/************** Tab */
+.modal-header{
+    text-align: center;
+}
+.invoice-dialog{
+    display: flex;
+    flex-direction: row;
+    flex:1
+}
+.tabs{    
+    width:25%;
+}
+.tabs .menu{
+    width: 100% !important;
+    border-right: none;
+    border-top:none;    
+}
+.tabs-contents{
+    position: relative;  
+    padding-top: 20px;
+    padding-bottom: 20px;    
+    min-height: 70vh;
+    flex:1;    
+}
+.web-view{
+    height: 100%;
+}
+.mobile-view{
+    display: none;
+    height: 100%;
+}
+/************** Invoices Informations Form*/
+.form-field{
+    display: flex; 
+    flex-direction: row;    
+    align-items: center;
+    padding: 10px 60px;
+}
+.input-label{    
+    width: 20%;
+    font-size: 17px !important;
+    padding-right:30px;
+}
+.date-input{
+    width: 100% !important;
+}
+.radio-label{
+    width:25%;
+}
+.search-label{
+    width: 30%;    
+    font-size: 17px !important;    
+}
+.button-container{
+    position: absolute;
+    width: 30%;
+    bottom: 15px;
+    left: 35%;    
+}
+/************** Payment Form */
+.founded-table-container{
+    padding: 0 40px 55px;
+}
+.founded-table{
+    width: 100%;
+    margin-top: 10px;    
+    /* border-collapse: collapse; */
+    border-collapse:separate;
+    border-spacing:0 8px;
+    color: #313131;
+    font-size: 14px;    
+}
+.founded-table tbody tr td:nth-child(1),.founded-table thead th:nth-child(1){
+    padding-left: 14px;
+}
+.founded-table th,.founded-table td{ 
+    vertical-align: middle;    
+}
+
+.founded-table thead tr th{    
+    padding-top:13px;
+    padding-bottom: 6px;        
+}
+.founded-table tr{
+    height: 41.8px;
+}
+.founded-table thead tr:first-child{
+    background-color:transparent;    
+}
+.founded-table tbody tr{
+    background-color:rgba(214, 214, 214, 0.45);    
+}
+.founded-table .selection:hover{    
+    background-color: rgba(214, 214, 214, 0.829);
+    cursor: pointer;
+}
+
+/********************** Accordion */
+.accordion-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; 
+}
+.accordion-button-container{
+    position: absolute;
+    width: 100%;
+    bottom: 15px;
+    padding: 0 10px;    
+}
+/********************** MOBILE ******************/
+@media only screen and (max-width:650px){
+    .web-view{
+        display: none;
+    }
+    .mobile-view{
+        display: block;
+    }
+    .form-field{
+        padding: 10px 10px;
+    }
+    .founded-table-container{
+        padding: 0 10px 30px;
+    }
+    .search-label{
+        width: 20%;     
+    }
+}
