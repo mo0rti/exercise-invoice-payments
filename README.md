@@ -3,7 +3,9 @@ A simple React app with Node-Js as back-end
 
 ## Explanation
 This is a React application (using react-semnatic-ui) to demonstrate a simple add & edit flow with a Node.js as its back-end.
-The server side uses an In Memory database with static variable named **`Invoices`** in **`./server/routes/index`**.
+The goal of this application is to display a list of invoices and user can add, edit or delete the invoices.
+
+On the server side, application uses an In Memory database with static variable named **`Invoices`** in **`./server/routes/index`**.
 
 ### Server Installation & Run
 
@@ -33,44 +35,43 @@ for the server side
 ### React
 ##### Explanation
 This application has been created by CRNA. There are 2 main screens in this application:
-1. InvoicesList View
-  1. index.js: it containts all the logic for **`InvoicesList View`**
-	2. Layout: Base presentational component for index.js
-	3. List: Presentational component to list all the invoices
-2. InvoiceModal View
-  1. index.js: it containts all the logic for **`InvoiceModal View`**
-	2. Layout: Base presentational component for index.js
-	3. Invoice-Information: 
-    1. index.js: it containts all the logic for **`InvoiceInformation View`**
-  	2. Layout: Base presentational component for index.js
-  	3. Layout-Desktop: Presentational component for Desktop view port
-    4. Layout-Mobile: Presentational component for mobile view port
-	4. Payments: 
-    1. index.js: it containts all the logic for **`InvoiceInformation View`**
-  	2. Layout: Base presentational component for index.js
-  	3. Bank-Payments-List: Presentational component to display the search result of `/payments/:iban` endpoint
+1. **`InvoicesList View`**
+  	* *`index.js`*: it containts all the logic for **`InvoicesList View`**
+	* *`Layout`*: Base presentational component for index.js
+	* *`List`*: Presentational component to list all the invoices
+2. **`InvoiceModal View`**
+  	* *`index.js`*: it containts all the logic for **`InvoiceModal View`**
+	* *`Layout`*: Base presentational component for index.js
+	* **`Invoice-Information`**: 
+    	1. *`index.js`*: it containts all the logic for **`InvoiceInformation View`**
+  		2. *`Layout`*: Base presentational component for index.js
+  		3. *`Layout-Desktop`*: Presentational component for Desktop view port
+    	4. *`Layout-Mobile`*: Presentational component for mobile view port
+	* **`Payments`**: 
+    	1. *`index.js`*: it containts all the logic for **`InvoiceInformation View`**
+  		2. *`Layout`*: Base presentational component for index.js
+  		3. *`Bank-Payments-List`*: Presentational component to display the search result of `/payments/:iban` endpoint
 
 ##### Configuration
-Settings for This application are inside a file named **`app.json`**. You can find this file in the following path: **`./client/app.json`**.
-**`url`** To set the server side endpoint base url;
-**`defaultIBAN`** To set the default IBAN when use doesn't choose `From Bank Account` in **`InvoiceInformation View`**;
+Settings for this application are inside a file named **`app.json`**. You can find this file in the following path: **`./client/app.json`**.
+
+| key | Description & Values |
+| --- | --- |
+| url | To set the server side endpoint base url   |
+| defaultIBAN | To set the default IBAN when a user doesn't choose `From Bank Account` option in **`InvoiceInformation View`** |
 
 ### Screen shots
-##### Sign in screen
-<img src="https://github.com/MortiTotti/react-native-user-management/blob/master/screenshots/sign-in.png" width="400" aspectRatio="1/2">
+##### Invoices list - desktop view
+<img src="https://github.com/MortiTotti/exercise-invoice-payments/blob/master/screenshots/invoice-list-desktop.png" width="400" aspectRatio="1/2">
 
-##### Sign up screen
-<img src="https://github.com/MortiTotti/react-native-user-management/blob/master/screenshots/sign-up.png" width="400" aspectRatio="1/2">
+##### Invoices list - mobile view
+<img src="https://github.com/MortiTotti/exercise-invoice-payments/blob/master/screenshots/invoice-list-mobile.png" width="400" aspectRatio="1/2">
 
-##### Home - Users screen
-<img src="https://github.com/MortiTotti/react-native-user-management/blob/master/screenshots/users-screen.jpg" width="400" aspectRatio="1/2">
+##### Invoice dialog - invoice information view - mobile view
+<img src="https://github.com/MortiTotti/exercise-invoice-payments/blob/master/screenshots/invoice-dialog-normal-state-mobile.png" width="400" aspectRatio="1/2">
 
-##### User Main Information
-<img src="https://github.com/MortiTotti/react-native-user-management/blob/master/screenshots/user-edit-screen.png" width="400" aspectRatio="1/2">
+##### Invoice dialog - invoice information view - desktop view
+<img src="https://github.com/MortiTotti/exercise-invoice-payments/blob/master/screenshots/invoice-dialog-normal-state.png" width="400" aspectRatio="1/2">
 
-##### User Addresses
-<img src="https://github.com/MortiTotti/react-native-user-management/blob/master/screenshots/user-edit-address.png" width="400" aspectRatio="1/2">
-
-##### Delete User 
-<img src="https://github.com/MortiTotti/react-native-user-management/blob/master/screenshots/user-delete-account.png" width="400" aspectRatio="1/2">
-
+##### Invoice dialog - payment view
+<img src="https://github.com/MortiTotti/exercise-invoice-payments/blob/master/screenshots/invoice-dialog-payment-state.png" width="400" aspectRatio="1/2">
