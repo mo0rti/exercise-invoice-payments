@@ -1,14 +1,14 @@
 var express = require('express');
 var uuidv4 = require('uuid/v4');
-var { createIBAN } = require('../helper/helper');
+var { createIBAN } = require('../helper');
 var router = express.Router();
 
 //in memory data base for mock usage and
 //make the server very very simple and not well orgenized
 var Invoices = [
-  { id: uuidv4(), date: "05-03-2019", subject: "Rent January", bankAmount: "500 EUR", iban: createIBAN() },
-  { id: uuidv4(), date: "01-03-2018", subject: "Rent Fabruary", bankAmount: "450 EUR", iban: createIBAN() },
-  { id: uuidv4(), date: "01-02-2018", subject: "Rent March", bankAmount: "500 EUR", iban: createIBAN() },
+  { id: uuidv4(), date: "05-03-2019", subject: "Rent January", bankAmount: "500", iban: createIBAN() },
+  { id: uuidv4(), date: "01-03-2018", subject: "Rent Fabruary", bankAmount: "450", iban: createIBAN() },
+  { id: uuidv4(), date: "01-02-2018", subject: "Rent March", bankAmount: "500", iban: createIBAN() },
 ]
 
 /* GET home page. */
@@ -16,8 +16,18 @@ router.get('/', function (req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-//********* get All
-router.get('/invoices', function (req, res) {
+//********* get bank payments
+router.get('/payments/:iban', function (req, res, next) {
+  let { iban } = req.params;
+  payments = Invoices.filter(t => t.iban.indexOf(iban) != -1);
+  let response = {
+    status: true,
+    data: payments
+  }
+  res.send(response);
+});
+
+router.get('/invoice', function (req, res) {
   let response = {
     status: true,
     data: Invoices
@@ -25,60 +35,48 @@ router.get('/invoices', function (req, res) {
   res.send(response);
 });
 
-//********* update
+router.get('/invoice/:id', function (req, res) {
+  let { id } = req.params;
+  
+  let founded = Invoices.filter(t => t.id == id);
+  let response = {
+    status: founded.length != 0,
+    data: (founded.length != 0) ? founded[0] : undefined,
+    message: (founded.length != 0) ? undefined : "not found",
+  };
+
+  res.send(response);
+});
+
 router.post('/invoice/:id', function (req, res) {
   let { id } = req.params;
-  let { date, subject, bankAmount } = req.body;
-  Invoices = Invoices.map(t => {
-    if (t.id != id) return t
-    else {
-      return { ...t, date, subject, bankAmount }
-    }
-  });
-  response = {
+  let { date, subject, bankAmount, iban } = req.body;
+
+  Invoices = Invoices.map(t => (t.id != id) ? t : { ...t, date, subject, bankAmount, iban });
+  let response = {
     status: true,
     message: 'Update was successful'
   }
-  res.send(response);
-});
-//********* get By ID
-router.get('/invoices/:id', function (req, res) {
-  let { id } = req.params;
-  let founded = Invoices.filter(t => t.id == id);
-  let response = {};
-  founded.length != 0 ?
-    response = {
-      status: true,
-      data: founded
-    }
-    :
-    response = {
-      status: false,
-      message: 'Not Found!!!'
-    }
+
   res.send(response);
 });
 
-//********* ADD
-router.post('/invoices/add', function (req, res) {
+router.post('/invoice', function (req, res) {
   let { date, subject, bankAmount, iban } = req.body;
-  Invoices.push({
-    id: uuidv4(),
-    date,
-    subject,
-    bankAmount,
-    iban: (iban == null) ? createIBAN() : req.body.iban,
-  });
+
+  let newInvoice = { id: uuidv4(), date, subject, bankAmount, iban };
+  Invoices.push(newInvoice);
   let response = {
     status: true,
-    data: Invoices
+    data: newInvoice
   }
+
   res.send(response);
 });
+
 //********* Remove
-router.delete('/invoice/delete/:id', function (req, res) {
+router.delete('/invoice/:id', function (req, res) {
   let { id } = req.params;
-  console.log(req.params);
   Invoices = Invoices.filter(t => t.id !== id);
   response = {
     status: true,
