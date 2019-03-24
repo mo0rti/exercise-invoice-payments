@@ -1,16 +1,17 @@
 import React from "react";
 import { Form } from "semantic-ui-react";
-import BankTransfersTable from "./Bank-Transfers-Table"
+import BankPaymentsList from "./Bank-Payments-List"
 
-const PaymentForm = ({ transfers, handleSearch, handleRowClick, submit }) =>
+const PaymentForm = ({ payments, handleSearch, handleRowClick, selectedPaymentRow }) =>
     <div style={{ height: '100%' }}>
         <Form style={{ height: '100%' }}>
             <Form.Field className="form-field">
                 <label className="search-label">Search IBAN</label>
                 <input placeholder='IBAN' onChange={handleSearch} />
             </Form.Field>
-            <BankTransfersTable
-                filtered={transfers}
+            <BankPaymentsList
+                payments={payments}
+                selectedPaymentRow={selectedPaymentRow}
                 handleRowClick={handleRowClick} />
         </Form>
     </div>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { getInvoicesList, getInvoiceDetailsById, deleteInvoice } from "Actions"
+import { withToastManager } from 'react-toast-notifications';
+import { getInvoices, getInvoiceById, deleteInvoice } from "Apis"
 import Layout from "./Layout";
 import "./style.css";
 
@@ -9,7 +10,7 @@ class InvoicesList extends Component {
         super(props);
         this.state = {
             invoices: [],
-            isModalOpen: false,
+            isInvoiceModalOpen: false,
             selectedInvoice: null,
             selectedRowId: null,
         }
@@ -24,34 +25,58 @@ class InvoicesList extends Component {
             .then(() => {
                 this._load();
             })
-            .catch(error => console.log(error));
+            .catch(error => {
+                this.props.toastManager.add(error.message || error, {
+                    appearance: 'error',
+                    autoDismiss: true,
+                });
+            });
     }
 
     _editInvoice = (id) => {
-        getInvoiceDetailsById(id)
+        getInvoiceById(id)
             .then(selectedInvoice => {
-                this.setState({ selectedInvoice, isModalOpen: true, selectedRowId: id });
+                this.setState({ selectedInvoice, isInvoiceModalOpen: true, selectedRowId: id });
             })
-            .catch(error => console.log(error));
+            .catch(error => {
+                this.props.toastManager.add(error.message || error, {
+                    appearance: 'error',
+                    autoDismiss: true,
+                });
+            });
     }
 
     _load = () => {
-        getInvoicesList().then(data =>
-            this.setState({ invoices: data })
-        )
+        getInvoices()
+            .then(data =>
+                this.setState({ invoices: data })
+            )
+            .catch(error => {
+                this.props.toastManager.add(error.message || error, {
+                    appearance: 'error',
+                    autoDismiss: true,
+                });
+            });
     }
 
-    _addInvoice = () => {
-        this.setState({ isModalOpen: true, selectedInvoice: null })
+    _openInvoiceModal = () => {
+        this.setState({ isInvoiceModalOpen: true, selectedInvoice: null })
     }
 
-    _closeModal = () => {
-        this.setState({ isModalOpen: false });
+    _closeInvoiceModal = (invoiceModalResult) => {
+        this.setState({ isInvoiceModalOpen: false });
+        if (invoiceModalResult && invoiceModalResult.succeed) {
+            this._load();
+            this.props.toastManager.add(invoiceModalResult.message, {
+                appearance: 'success',
+                autoDismiss: true,
+            });
+        }
     }
 
     render() {
         let {
-            isModalOpen,
+            isInvoiceModalOpen,
             invoices,
             selectedInvoice
         } = this.state;
@@ -60,14 +85,16 @@ class InvoicesList extends Component {
             <Layout
                 selectedInvoice={selectedInvoice}
                 invoices={invoices}
-                addInvoice={this._addInvoice}
+
                 editInvoice={this._editInvoice}
                 deleteInvoice={this._deleteInvoice}
-                closeModal={this._closeModal}
-                isModalOpen={isModalOpen}
+
+                openInvoiceModal={this._openInvoiceModal}
+                closeInvoiceModal={this._closeInvoiceModal}
+                isInvoiceModalOpen={isInvoiceModalOpen}
             />
         )
     }
 }
 
-export default InvoicesList;
+export default withToastManager(InvoicesList);

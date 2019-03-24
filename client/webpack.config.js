@@ -29,8 +29,7 @@ module.exports = {
       Assets: path.resolve(__dirname, 'src/assets'),
       Components: path.resolve(__dirname, 'src/components'),
       Views: path.resolve(__dirname, 'src/views'),
-      Reducers: path.resolve(__dirname, 'src/reducers'),
-      Actions: path.resolve(__dirname, 'src/actions'),
+      Apis: path.resolve(__dirname, 'src/apis'),
       Constants: path.resolve(__dirname, 'src/constants'),
       Helpers: path.resolve(__dirname, 'src/helpers'),
     }

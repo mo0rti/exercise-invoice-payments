@@ -1,34 +1,39 @@
 import React from "react";
-import { getBankPaymentsList } from "Actions"
+import { getBankPayments } from "Apis"
 import Layout from "./Layout";
 
 export default class Payments extends React.Component {
 
     state = {
-        transfers: [],
+        payments: [],
         selectedPaymentRow: null
     }
 
     _handleRowClick = (selectedPaymentRow) => {
+        const { setInvoiceAmountFromPayment } = this.props;
         this.setState({ selectedPaymentRow });
+        if (selectedPaymentRow)
+            setInvoiceAmountFromPayment({ iban: selectedPaymentRow.iban, bankAmount: selectedPaymentRow.bankAmount });
     }
 
     _handleSearch = (e) => {
         let iban = e.target.value;
-        getBankPaymentsList(iban).then(data =>
-            this.setState({ transfers: data })
-        )
-    }
-
-    _done = () => {
-
+        if (iban) {
+            getBankPayments(iban)
+                .then(data =>
+                    this.setState({ payments: data })
+                )
+                .catch(error => console.log(error));
+        } else {
+            this.setState({ payments: [] })
+        }
     }
 
     render() {
-        const { transfers, selectedPaymentRow } = this.state;
+        const { payments, selectedPaymentRow } = this.state;
         return (
             <Layout
-                transfers={transfers}
+                payments={payments}
                 handleSearch={this._handleSearch}
                 selectedPaymentRow={selectedPaymentRow}
                 handleRowClick={this._handleRowClick}

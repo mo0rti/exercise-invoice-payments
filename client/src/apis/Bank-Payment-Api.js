@@ -1,10 +1,9 @@
 import constants from "Constants";
 import HttpClient from "Helpers/Http-Client";
 
-export const getInvoicesList = async () => {
+export const getBankPayments = async (iban) => {
     try {
-
-        let response = await HttpClient.getAsync(`${constants.SERVER_HOST_URL}/invoices`);
+        let response = await HttpClient.getAsync(`${constants.SERVER_HOST_URL}/payments/${iban}`);
         let { status, data, message } = response
         if (!status) {
             return Promise.reject(message);

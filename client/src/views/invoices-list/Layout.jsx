@@ -1,16 +1,18 @@
 import React from 'react';
 import { Grid, Container } from "semantic-ui-react";
-import InvoicesTable from "./Invoices-Table";
+import List from "./List";
 import InvoiceModal from "Views/invoice-modal";
 
 const Layout = ({
     selectedInvoice,
     invoices,
-    addInvoice,
+
     editInvoice,
     deleteInvoice,
-    isModalOpen,
-    closeModal
+
+    openInvoiceModal,
+    closeInvoiceModal,
+    isInvoiceModalOpen
 }) =>
 
     <Grid style={{ height: '100%' }} verticalAlign='middle'>
@@ -18,11 +20,11 @@ const Layout = ({
             <Container>
                 <InvoiceModal
                     selectedInvoice={selectedInvoice}
-                    isModalOpen={isModalOpen}
-                    closeModal={closeModal}
+                    isModalOpen={isInvoiceModalOpen}
+                    closeModal={closeInvoiceModal}
                 />
-                <InvoicesTable
-                    addInvoice={addInvoice}
+                <List
+                    openInvoiceModal={openInvoiceModal}
                     deleteInvoice={deleteInvoice}
                     editInvoice={editInvoice}
                     invoices={invoices} />

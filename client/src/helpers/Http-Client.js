@@ -34,10 +34,18 @@ const HttpClient = {
 
 const http = async (url, options) => {
     // TODO: possible extra work before calling api
-    return fetch(url, options)
-        .then(response => response.json())
-        .then(data => Promise.resolve(data))
-        .catch(error => Promise.reject(error));
+    try {
+        const response = await fetch(url, options);
+        if (!response.ok) {
+            throw Error(response.statusText);
+        }
+        const data = await response.json();
+        return await Promise.resolve(data);
+    }
+    catch (error) {
+        // TODO: log the errors
+        return Promise.reject({ message: "Unexpected error!! Contact support team" });
+    }
 }
 
 export default HttpClient;

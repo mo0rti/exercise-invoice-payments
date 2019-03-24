@@ -1,3 +1,4 @@
 {
-    "url": "http://localhost:3001"
+    "url": "http://localhost:3001",
+    "defaultIBAN": "DE-09-1235-5899-45798-10"
 }

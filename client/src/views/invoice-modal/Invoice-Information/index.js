@@ -19,19 +19,19 @@ export default class InvoiceInformation extends React.Component {
     }
 
     _handleCheckBox = () => {
-        const { handleInputChange, invoice } = this.props;
-        handleInputChange("isBankAmount", !invoice.isBankAmount);
+        const { setInvoiceInformation, invoice } = this.props;
+        setInvoiceInformation("isBankAmount", !invoice.isBankAmount);
     }
 
     _handleDateInputChange = (event, { name, value }) => {
-        const { handleInputChange } = this.props;
-        handleInputChange(name, value);
+        const { setInvoiceInformation } = this.props;
+        setInvoiceInformation(name, value);
     }
 
     _handleInputChange = (e, name) => {
-        const { handleInputChange } = this.props;
+        const { setInvoiceInformation } = this.props;
         let val = e.target.value;
-        handleInputChange(name, val);
+        setInvoiceInformation(name, val);
     }
 
     render() {

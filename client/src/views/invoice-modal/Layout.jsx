@@ -1,66 +1,92 @@
 import React from "react";
-import { Button, Tab, Modal, Container } from "semantic-ui-react";
+import { Grid, Icon, Message, Button, Tab, Modal, Container, Segment } from "semantic-ui-react";
 import InvoicesInformationForm from "./Invoice-Information";
 import PaymentsForm from "./Payments";
 
-const paneInfo = (invoice, goToPayment, handleInputChange, togglePaymentMode) => ({
+const paneInfo = (invoice, setInvoiceInformation) => ({
     menuItem: 'Invoice Information',
     render: () =>
         <Tab.Pane attached={false}>
-            <InvoicesInformationForm 
+            <InvoicesInformationForm
                 invoice={invoice}
-                handleInputChange={handleInputChange} 
-                goToPayment={goToPayment} 
-                togglePaymentMode={togglePaymentMode} 
+                setInvoiceInformation={setInvoiceInformation}
             />
         </Tab.Pane>
 });
 
-const panePayment = {
+const panePayment = (setInvoiceAmountFromPayment) => ({
     menuItem: 'Payments',
     render: () =>
-        <Tab.Pane active={true} attached={false}>
-            <PaymentsForm />
+        <Tab.Pane attached={false}>
+            <PaymentsForm
+                setInvoiceAmountFromPayment={setInvoiceAmountFromPayment}
+            />
         </Tab.Pane>
-};
+});
 
 const Layout = ({
     invoice,
-    isFormValid,
+
     isModalOpen,
     closeModal,
     isInPaymentMode,
-    togglePaymentMode,
-    goToPayment,
-    actionButtonPress,
-    handleInputChange,
+
+    activeIndex,
     onTabChange,
-    activeIndex
+
+    setInvoiceAmountFromPayment,
+
+    setInvoiceInformation,
+    isInvoiceInformationValid,
+
+    invoiceActionButtonPress,
+    message
 }) =>
     <Modal
         open={isModalOpen}
         onClose={closeModal}
         className="modal-container"
+        style={{ minHeight: '500' }}
         closeIcon
     >
-        <Modal.Header className="modal-header">Invoices Dialog</Modal.Header>
-        <Container>
-            <Tab
-                activeIndex={activeIndex}
-                menu={{ fluid: true, vertical: true }}
-                menuPosition='left'
-                onTabChange={onTabChange}
-                panes={[paneInfo(invoice, goToPayment, handleInputChange, togglePaymentMode), isInPaymentMode ? panePayment : null]}
-            />
-        </Container>
-        <Modal.Actions className="modal-header">
-            <Button
-                floated='right'
-                onClick={actionButtonPress}
-                disabled={!isFormValid()}
-            >
-                {invoice.isBankAmount ? "Next" : "Done"}
-            </Button>
+        <Modal.Header color="blue" className="modal-header">Invoices Dialog</Modal.Header>
+        <Modal.Content scrolling>
+            <Container>
+                <Tab
+                    activeIndex={activeIndex}
+                    menu={{ fluid: true, vertical: true }}
+                    menuPosition='left'
+                    onTabChange={onTabChange}
+                    panes={[
+                        paneInfo(invoice, setInvoiceInformation),
+                        isInPaymentMode ? panePayment(setInvoiceAmountFromPayment) : null
+                    ]}
+                />
+            </Container>
+        </Modal.Content>
+        <Modal.Actions>
+            <Grid columns={2}>
+                <Grid.Row>
+                    <Grid.Column>
+                        {message ?
+                            <Message warning>
+                                <Icon name='help' />
+                                {message}
+                            </Message> : null
+                        }
+                    </Grid.Column>
+                    <Grid.Column>
+                        <Button
+                            floated='right'
+                            primary
+                            onClick={invoiceActionButtonPress}
+                            disabled={!isInvoiceInformationValid}
+                        >
+                            {(invoice.isBankAmount && activeIndex === 0) ? "Next" : "Done"}
+                        </Button>
+                    </Grid.Column>
+                </Grid.Row>
+            </Grid>
         </Modal.Actions>
     </Modal>
 
