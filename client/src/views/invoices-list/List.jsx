@@ -2,7 +2,7 @@ import React from "react";
 import { Table, Button, Label, Card, Responsive } from "semantic-ui-react";
 
 const MobileRowItem = ({ item, editInvoice, deleteInvoice }) =>
-    <Responsive as={Table.Row} maxWidth={599} key={item.id}>
+    <Responsive as={Table.Row} {...Responsive.onlyMobile} key={item.id}>
         <Table.Cell>
             <Card fluid={true}>
                 <Card.Content>
@@ -25,7 +25,7 @@ const MobileRowItem = ({ item, editInvoice, deleteInvoice }) =>
     </Responsive>
 
 const DesktopRowItem = ({ item, editInvoice, deleteInvoice }) =>
-    <Responsive as={Table.Row} minWidth={600} key={item.id}>
+    <Responsive as={Table.Row} minWidth={Responsive.onlyTablet.minWidth} key={item.id}>
         <Table.Cell>{item.date}</Table.Cell>
         <Table.Cell>{item.subject}</Table.Cell>
         <Table.Cell>{item.bankAmount}</Table.Cell>

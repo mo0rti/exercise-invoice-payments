@@ -4,7 +4,7 @@ import Layout from "./Layout";
 export default class InvoiceInformation extends React.Component {
 
     state = {
-        activeIndex: 0,
+        activeAccordionIndex: 0,
         date: '',
         subject: '',
         isBankAmount: false,
@@ -13,9 +13,9 @@ export default class InvoiceInformation extends React.Component {
 
     _handleAccordionClick = (e, titleProps) => {
         let { index } = titleProps;
-        const { activeIndex } = this.state
-        const newIndex = (activeIndex === index) ? -1 : index;
-        this.setState({ activeIndex: newIndex })
+        const { activeAccordionIndex } = this.state
+        const newIndex = (activeAccordionIndex === index) ? -1 : index;
+        this.setState({ activeAccordionIndex: newIndex })
     }
 
     _handleCheckBox = () => {
@@ -36,13 +36,15 @@ export default class InvoiceInformation extends React.Component {
 
     render() {
         const { invoice } = this.props;
+        const { activeAccordionIndex } = this.state;
 
         return (
             <Layout
                 invoice={invoice}
+                activeAccordionIndex={activeAccordionIndex}
                 handleInputChange={this._handleInputChange}
                 handleCheckBox={this._handleCheckBox}
-                handleDateInputChange = {this._handleDateInputChange}
+                handleDateInputChange={this._handleDateInputChange}
                 handleAccordionClick={this._handleAccordionClick}
             />
         );

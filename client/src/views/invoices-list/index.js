@@ -24,6 +24,10 @@ class InvoicesList extends Component {
         deleteInvoice(id)
             .then(() => {
                 this._load();
+                this.props.toastManager.add("Invoice deleted!!", {
+                    appearance: 'success',
+                    autoDismiss: true,
+                });
             })
             .catch(error => {
                 this.props.toastManager.add(error.message || error, {

@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Icon, Message, Button, Tab, Modal, Container, Segment } from "semantic-ui-react";
+import { Grid, Icon, Message, Button, Tab, Modal, Container, Responsive } from "semantic-ui-react";
 import InvoicesInformationForm from "./Invoice-Information";
 import PaymentsForm from "./Payments";
 
@@ -52,7 +52,20 @@ const Layout = ({
         <Modal.Header color="blue" className="modal-header">Invoices Dialog</Modal.Header>
         <Modal.Content scrolling>
             <Container>
-                <Tab
+                <Responsive
+                    {...Responsive.onlyMobile}
+                    as={Tab}
+                    activeIndex={activeIndex}
+                    menu={{ fluid: true }}
+                    onTabChange={onTabChange}
+                    panes={[
+                        paneInfo(invoice, setInvoiceInformation),
+                        isInPaymentMode ? panePayment(setInvoiceAmountFromPayment) : null
+                    ]}
+                />
+                <Responsive
+                    minWidth={Responsive.onlyTablet.minWidth}
+                    as={Tab}
                     activeIndex={activeIndex}
                     menu={{ fluid: true, vertical: true }}
                     menuPosition='left'
