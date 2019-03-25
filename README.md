@@ -1,8 +1,8 @@
-# exercise-invoice-payments
-A simple React app with Node-Js as back-end
+# Exercise Invoice Payments
+A web application using React for client side and Node-Js for server side.
 
 ## Explanation
-This is a React application (using react-semnatic-ui) to demonstrate a simple add & edit flow with a Node.js as its back-end.
+This is a React application - using [react-semnatic-ui](https://react.semantic-ui.com/) for UI - to demonstrate a simple add & edit flow with a Node.js as its back-end.
 The goal of this application is to display a list of invoices and user can add, edit or delete the invoices.
 
 On the server side, application uses an In Memory database with static variable named **`Invoices`** in **`./server/routes/index`**.
