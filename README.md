@@ -34,7 +34,7 @@ for the server side
 
 ### React
 ##### Explanation
-This application has been created by CRNA. There are 2 main screens in this application:
+This application created by CRNA. There are 2 main screens in this application:
 1. **`InvoicesList View`**
   	* *`index.js`*: it containts all the logic for **`InvoicesList View`**
 	* *`Layout`*: Base presentational component for index.js
