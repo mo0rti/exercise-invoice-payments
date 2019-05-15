@@ -1,5 +1,6 @@
 # Exercise Invoice Payments
-A web application using React for client side and Node-Js for server side.
+A client side application using React and Node-Js for server side. You can find the description of this repository in [this file](https://github.com/MortiTotti/exercise-invoice-payments/blob/master/Tasks%20Assignment.pdf).
+In this exercise I tried to use latest react best practices, and I will update this repo based on newest best practices in the future.
 
 ## Explanation
 This is a React application - using [react-semnatic-ui](https://react.semantic-ui.com/) for UI - to demonstrate a simple add & edit flow with a Node.js as its back-end.
